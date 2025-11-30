@@ -1,0 +1,8 @@
+tta:
+  name: submission
+  class_path: tta.submission.Submission
+  args:
+    lr: 1e-4
+    weight_decay: 0.0
+    steps_per_batch: 1
+    eps: 1e-8
