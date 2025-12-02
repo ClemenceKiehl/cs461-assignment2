@@ -1,3 +1,4 @@
+from __future__ import annotations
 import os
 from typing import List, Tuple
 
@@ -6,7 +7,7 @@ import torch.nn as nn
 import numpy as np
 from sklearn.metrics import f1_score
 from torch.utils.data import DataLoader, random_split
-from part2.dataset import ImageDataset
+from ..dataset import ImageDataset
 
 
 
