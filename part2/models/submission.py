@@ -194,3 +194,19 @@ def train_mil(
 
     print("Training complete.")
     print(f"Best macro-F1 = {best_f1:.4f}")
+
+
+if __name__ == "__main__":
+    # Training entry point
+    train_mil(
+        dataset_path="/shared/CS461/cs461_assignment2_data/part2/data",
+        split="train",
+        hidden_dim=256,
+        dropout=0.25,
+        batch_size=8,
+        lr=1e-4,
+        weight_decay=1e-5,
+        num_epochs=20,
+        val_fraction=0.2,
+        ckpt_path="ckpts/best_mil.pt",
+    )
