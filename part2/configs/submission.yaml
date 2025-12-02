@@ -1,2 +1,10 @@
 model:
   class_path: models.submission.Submission
+  best_weight_path: ckpts/best_mil.pt
+
+dataset:
+  collate_fn: models.submission.mil_collate_fn
+
+evaluation:
+  device: cuda
+  batch_size: 16
