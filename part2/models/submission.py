@@ -63,16 +63,16 @@ class AttentionMIL(nn.Module):
         for bag in bags:
             bag = bag.to(device)
 
-            H = self.encoder(bag)                        # (N_i, hidden_dim)
-            A = self.att_U(torch.tanh(self.att_V(H)))    # (N_i, 1)
-            A = torch.softmax(A.squeeze(1), dim=0)       # (N_i,)
+            H = self.encoder(bag)                        
+            A = self.att_U(torch.tanh(self.att_V(H)))    
+            A = torch.softmax(A.squeeze(1), dim=0)      
 
             bag_repr = torch.sum(A.unsqueeze(1) * H, dim=0)
             bag_representations.append(bag_repr)
 
         bag_representations = torch.stack(bag_representations)
 
-        # CLASSIFIER
+        # Classifier
         logits = self.classifier(bag_representations)
 
         # return probabilities for ROC-AUC
