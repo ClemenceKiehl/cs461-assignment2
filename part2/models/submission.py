@@ -7,7 +7,7 @@ import torch.nn as nn
 import numpy as np
 from sklearn.metrics import f1_score
 from torch.utils.data import DataLoader, random_split
-from ..dataset import ImageDataset
+from part2.dataset import ImageDataset
 
 
 
