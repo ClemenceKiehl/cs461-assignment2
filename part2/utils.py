@@ -62,7 +62,11 @@ def load_cfg(cfg_or_path: DictConfig | str):
         return cfg_or_path
     base_config = OmegaConf.load("part2/configs/base_config.yaml")
     cfg_path = Path(cfg_or_path)
-    return OmegaConf.merge(base_config, OmegaConf.load(cfg_path))
+    return OmegaConf.merge(
+    base_config,
+    OmegaConf.load(f"part2/configs/{cfg_or_path}")
+)
+
 
 
 def load_full_dataset(
