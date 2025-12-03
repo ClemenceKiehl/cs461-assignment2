@@ -60,7 +60,7 @@ def set_seed(seed: int) -> None:
 def load_cfg(cfg_or_path: DictConfig | str):
     if isinstance(cfg_or_path, DictConfig):
         return cfg_or_path
-    base_config = OmegaConf.load("configs/base_config.yaml")
+    base_config = OmegaConf.load("part2/configs/base_config.yaml")
     cfg_path = Path(cfg_or_path)
     return OmegaConf.merge(base_config, OmegaConf.load(cfg_path))
 
