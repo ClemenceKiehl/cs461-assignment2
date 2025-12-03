@@ -60,17 +60,21 @@ def load_cfg(cfg_or_path: DictConfig | str):
     if isinstance(cfg_or_path, DictConfig):
         return cfg_or_path
 
-    # Always load base config from part2/configs
+    # Always load base config
     base_config = OmegaConf.load("part2/configs/base_config.yaml")
 
-    # Remove accidental "configs/" prefix if present
+    # Clean the path robustly
+    cfg_or_path = str(cfg_or_path)
     cfg_or_path = cfg_or_path.replace("configs/", "")
+    cfg_or_path = cfg_or_path.replace("/configs/", "")
+    cfg_or_path = cfg_or_path.replace("./", "")
+    cfg_or_path = cfg_or_path.replace("../", "")
 
-    # Ensure filename ends with .yaml
+    # Ensure .yaml extension
     if not cfg_or_path.endswith(".yaml"):
         cfg_or_path = cfg_or_path + ".yaml"
 
-    # Final full path
+    # Build final path
     full_path = f"part2/configs/{cfg_or_path}"
 
     return OmegaConf.merge(base_config, OmegaConf.load(full_path))
