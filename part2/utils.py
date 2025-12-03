@@ -58,29 +58,25 @@ def set_seed(seed: int) -> None:
 
 def load_cfg(cfg_or_path: DictConfig | str):
     if isinstance(cfg_or_path, DictConfig):
-        print("DEBUG cfg_or_path BEFORE CLEAN:", cfg_or_path)
-    return cfg_or_path
+        return cfg_or_path
 
-    # Always load base config
+    print("DEBUG: requested cfg =", cfg_or_path)
+
+    # load base config
     base_config = OmegaConf.load("part2/configs/base_config.yaml")
 
-    # Clean the path robustly
-    cfg_or_path = str(cfg_or_path)
-    cfg_or_path = cfg_or_path.replace("configs/", "")
-    cfg_or_path = cfg_or_path.replace("/configs/", "")
-    cfg_or_path = cfg_or_path.replace("./", "")
-    cfg_or_path = cfg_or_path.replace("../", "")
+    # clean path
+    name = cfg_or_path.replace("configs/", "").replace(".yaml", "")
+    cfg_file = f"part2/configs/{name}.yaml"
 
-    # Ensure .yaml extension
-    if not cfg_or_path.endswith(".yaml"):
-        cfg_or_path = cfg_or_path + ".yaml"
+    print("DEBUG: full path =", cfg_file)
 
-    # Build final path
-    full_path = f"part2/configs/{cfg_or_path}"
-    print("DEBUG cfg_or_path AFTER CLEAN:", cfg_or_path)
-    print("DEBUG full_path:", full_path)
+    # load submission.yaml or linear_baseline.yaml
+    cfg_specific = OmegaConf.load(cfg_file)
 
-    return OmegaConf.merge(base_config, OmegaConf.load(full_path))
+    # merge and return
+    return OmegaConf.merge(base_config, cfg_specific)
+
 
 
 
