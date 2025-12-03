@@ -59,7 +59,7 @@ def set_seed(seed: int) -> None:
 def load_cfg(cfg_or_path: DictConfig | str):
     if isinstance(cfg_or_path, DictConfig):
         print("DEBUG cfg_or_path BEFORE CLEAN:", cfg_or_path)
-        return cfg_or_path
+    return cfg_or_path
 
     # Always load base config
     base_config = OmegaConf.load("part2/configs/base_config.yaml")
