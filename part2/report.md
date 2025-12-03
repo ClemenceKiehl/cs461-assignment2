@@ -10,6 +10,7 @@ Furthermore, a custom collate function was necessary because the number of patch
 The final evaluation demonstrated a substantial improvement over the baseline:
 
 Evaluation Results:
+
 +-----------------+------------+------------+---------------------+-----------+
 | Method          |   accuracy |   f1_score |   balanced_accuracy |   roc_auc |
 +=================+============+============+=====================+===========+
@@ -17,6 +18,7 @@ Evaluation Results:
 +-----------------+------------+------------+---------------------+-----------+
 | submission      |     0.872  |     0.8654 |              0.8775 |    0.9864 |
 +-----------------+------------+------------+---------------------+-----------+
+
 While the linear probe achieves a macro-F1 of 0.7324, my MIL model reaches 0.8654, with an accuracy of 0.8720 and a ROC-AUC of 0.9864. These results confirm that attention successfully identifies the most informative patches and that handling patients as variable-sized bags rather than averaged vectors significantly enhances performance. 
 
 ## Reproduction of Results :
