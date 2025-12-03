@@ -1,13 +1,18 @@
+dataset:
+  class_path: part2.dataset.ImageDataset
+  args:
+    dataset_path: /shared/CS461/cs461_assignment2_data/part2/data/
+
+  collate_fn: part2.models.linear_baseline.linear_collate_fn
+
 model:
-  class_path: models.linear_baseline.LinearProbe
-  args: 
+  class_path: part2.models.linear_baseline.LinearProbe
+  args:
     embed_dim: 3072
     num_classes: 7
 
   best_weight_path: /shared/CS461/cs461_assignment2_data/part2/ckpts/best_linear_baseline.pt
 
-
-dataset:
-  class_path: part2.dataset.ImageDataset
-  args:
-    dataset_path: /shared/CS461/cs461_assignment2_data/part2/data/
+evaluation:
+  device: cuda
+  batch_size: 32
