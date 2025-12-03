@@ -58,6 +58,7 @@ def set_seed(seed: int) -> None:
 
 def load_cfg(cfg_or_path: DictConfig | str):
     if isinstance(cfg_or_path, DictConfig):
+        print("DEBUG cfg_or_path BEFORE CLEAN:", cfg_or_path)
         return cfg_or_path
 
     # Always load base config
@@ -76,6 +77,8 @@ def load_cfg(cfg_or_path: DictConfig | str):
 
     # Build final path
     full_path = f"part2/configs/{cfg_or_path}"
+    print("DEBUG cfg_or_path AFTER CLEAN:", cfg_or_path)
+    print("DEBUG full_path:", full_path)
 
     return OmegaConf.merge(base_config, OmegaConf.load(full_path))
 
