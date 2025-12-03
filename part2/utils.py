@@ -60,12 +60,18 @@ def set_seed(seed: int) -> None:
 def load_cfg(cfg_or_path: DictConfig | str):
     if isinstance(cfg_or_path, DictConfig):
         return cfg_or_path
+
+    # Always load base config from part2/configs
     base_config = OmegaConf.load("part2/configs/base_config.yaml")
-    cfg_path = Path(cfg_or_path)
-    return OmegaConf.merge(
-    base_config,
-    OmegaConf.load(f"part2/configs/{cfg_or_path}")
-)
+
+    # If user passes "linear_baseline" → load part2/configs/linear_baseline.yaml
+    if not cfg_or_path.endswith(".yaml"):
+        cfg_or_path = cfg_or_path + ".yaml"
+
+    # Load specific config
+    full_path = f"part2/configs/{cfg_or_path}"
+    return OmegaConf.merge(base_config, OmegaConf.load(full_path))
+
 
 
 
