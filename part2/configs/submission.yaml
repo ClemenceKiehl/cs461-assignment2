@@ -1,9 +1,13 @@
-model:
-  class_path: models.submission.Submission
-  best_weight_path: ckpts/best_mil.pt
-
 dataset:
-  collate_fn: models.submission.mil_collate_fn
+  class_path: part2.dataset.ImageDataset
+  args:
+    dataset_path: /shared/CS461/cs461_assignment2_data/part2/data/
+
+  collate_fn: part2.models.submission.mil_collate_fn
+
+model:
+  class_path: part2.models.submission.Submission
+  best_weight_path: ckpts/best_mil.pt
 
 evaluation:
   device: cuda
