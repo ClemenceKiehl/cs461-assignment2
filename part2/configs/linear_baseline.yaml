@@ -8,4 +8,6 @@ model:
 
 
 dataset:
-  collate_fn: models.linear_baseline.linear_collate_fn
+  class_path: part2.dataset.ImageDataset
+  args:
+    dataset_path: /shared/CS461/cs461_assignment2_data/part2/data/
