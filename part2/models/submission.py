@@ -55,11 +55,8 @@ class AttentionMIL(nn.Module):
             nn.Linear(hidden_dim, num_classes),
         )
 
+    
     def forward(self, bags: List[torch.Tensor]):
-        """
-        bags: list of tensors of shape (N_i, embed_dim)
-        Return: logits (batch_size, num_classes)
-        """
         device = next(self.parameters()).device
         bag_representations = []
 
@@ -74,7 +71,15 @@ class AttentionMIL(nn.Module):
             bag_representations.append(bag_repr)
 
         bag_representations = torch.stack(bag_representations)
-        return self.classifier(bag_representations)
+
+        # CLASSIFIER
+        logits = self.classifier(bag_representations)
+
+        # return probabilities for ROC-AUC
+        probs = torch.softmax(logits, dim=1)
+        return probs
+
+
 
 
 
