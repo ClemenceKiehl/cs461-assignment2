@@ -56,7 +56,6 @@ def set_seed(seed: int) -> None:
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(seed)
 
-
 def load_cfg(cfg_or_path: DictConfig | str):
     if isinstance(cfg_or_path, DictConfig):
         return cfg_or_path
@@ -64,13 +63,18 @@ def load_cfg(cfg_or_path: DictConfig | str):
     # Always load base config from part2/configs
     base_config = OmegaConf.load("part2/configs/base_config.yaml")
 
-    # If user passes "linear_baseline" → load part2/configs/linear_baseline.yaml
+    # Remove accidental "configs/" prefix if present
+    cfg_or_path = cfg_or_path.replace("configs/", "")
+
+    # Ensure filename ends with .yaml
     if not cfg_or_path.endswith(".yaml"):
         cfg_or_path = cfg_or_path + ".yaml"
 
-    # Load specific config
+    # Final full path
     full_path = f"part2/configs/{cfg_or_path}"
+
     return OmegaConf.merge(base_config, OmegaConf.load(full_path))
+
 
 
 
