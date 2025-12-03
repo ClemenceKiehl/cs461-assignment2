@@ -12,7 +12,7 @@ from tta.base import TTAMethod
 class Submission(TTAMethod):
     """
     TENT-style Test-Time Adaptation:
-    - We update ONLY BatchNorm affine parameters (gamma/beta)
+    - We update only BatchNorm affine parameters (gamma/beta)
       by minimizing prediction entropy on the current batch.
     - The wrapped model is a pretrained ResNet-50.
     """
@@ -65,7 +65,7 @@ class Submission(TTAMethod):
             raise RuntimeError("No BatchNorm2d affine parameters found to adapt.")
 
 
-    # Core forward: do adaptation on-the-fly, return logits
+
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
