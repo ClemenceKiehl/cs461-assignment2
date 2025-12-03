@@ -7,7 +7,7 @@ import torch
 from torch.utils.data import DataLoader
 import numpy as np
 import pickle
-from utils import locate, parse_args, set_seed, load_cfg, build_model, load_full_dataset
+from part2.utils import locate, parse_args, set_seed, load_cfg, build_model, load_full_dataset
 from tabulate import tabulate
 import os
 import sys
